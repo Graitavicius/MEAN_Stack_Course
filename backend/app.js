@@ -38,33 +38,28 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
-  post.save();
-  res.status(201).json({
-    message: "Post added successfully",
+  post.save().then((createdPost) => {
+    res.status(201).json({
+      message: "Post added successfully",
+      postId: createdPost._id,
+    });
   });
 });
 
 app.get("/api/posts", (req, res, next) => {
-  const posts = [
-    {
-      id: "flksndflsd1231fsd",
-      title: "First server-side post",
-      content: "This is comming from the server",
-    },
-    {
-      id: "agslndf321a3s5dasdas",
-      title: "Second server-side post",
-      content: "This is comming from the server",
-    },
-    {
-      id: "65asd5asdas3da",
-      title: "Third server-side post",
-      content: "This is comming from the server",
-    },
-  ];
-  res.status(200).json({
-    message: "Posts fetched successfully",
-    posts: posts,
+  Post.find().then((documents) => {
+    console.log(documents);
+    res.status(200).json({
+      message: "Posts fetched successfully",
+      posts: documents,
+    });
+  });
+});
+
+app.delete("/api/posts/:id", (req, res, next) => {
+  Post.deleteOne({ _id: req.params.id }).then((result) => {
+    console.log(result);
+    res.status(200).json({ message: "Post deleted!" });
   });
 });
 

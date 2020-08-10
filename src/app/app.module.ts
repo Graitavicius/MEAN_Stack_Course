@@ -9,6 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
@@ -37,6 +38,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
     MatProgressSpinnerModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

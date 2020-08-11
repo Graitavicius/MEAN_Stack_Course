@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const postsRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
 
 mongoose
   .connect(
@@ -13,7 +14,7 @@ mongoose
     console.log("Connected to the database!");
   })
   .catch(() => {
-    console.log("Connected to database failed!");
+    console.log("Connection to database failed!");
   });
 
 const app = express();
@@ -36,5 +37,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts", postsRoutes);
+app.use("/api/user", userRoutes);
 
 module.exports = app;

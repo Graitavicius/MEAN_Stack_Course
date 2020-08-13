@@ -35,7 +35,8 @@ export class AuthService {
       .post('http://localhost:3000/api/user/signup', authData)
       .subscribe(
         () => {
-          this.router.navigate(['/']);
+          alert('Signup successful, you can Login now');
+          this.router.navigate(['/login']);
         },
         (error) => {
           this.authStatusListener.next(false);
